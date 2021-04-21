@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<div id="results"> </div> <!-- блок с результатами отправки формы можно оформить и поставить на месте формы, если она скрывается -->
+<form id="formx" onsubmit="call()"> <!--- вызов JavaScript события --->
+<legend>Оставить заявку</legend> 
+<label for="name">Ваше имя:</label><input id="name" name="name" value="" type="text"> <!---далее три строчка с полями--->
+<label for="email">Ваш E-mail:</label><input id="email" name="email" value="" type="text">
+<label for="phone">Ваш телефон:</label><input id="phone" name="phone" value="" type="text">
+<input value="Отправить" type="submit"> 
+</form>
+
+
+
+	<script type="text/javascript">
+	function call() {
+	  var msg   = $('#formx').serialize();
+       $.ajax({
+         type: 'POST',
+         url: 'formx.php', //обращаемся к обработчику
+         data: msg,
+        success: function(data) {  //в случае успеха выводим результаты в div "results"
+            $('#formx').remove(); //скрываем форму после отправки 
+            $('#results').html(data); //показываем сообщение об успехе вместо неё 
+         },
+         error:  function(xhr, str){ //ошибка выводит соответствующее сообщение 
+	    alert('Возникла ошибка: ' + xhr.responseCode);
+         }
+       });
+   }
+</script>
+
+
+</body>
+</html>
