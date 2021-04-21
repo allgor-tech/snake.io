@@ -32,7 +32,7 @@
 	// функция отправки письма
 	function send_mail($message){
 		// почта, на которую придет письмо
-		$mail_to = "my@mail.ru"; 
+		$mail_to = "alex.kalashnikov201488@gmail.com"; 
 		// тема письма
 		$subject = "Письмо с обратной связи";
 		
